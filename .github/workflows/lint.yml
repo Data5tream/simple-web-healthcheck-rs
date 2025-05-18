@@ -1,0 +1,35 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - Dockerfile
+      - '**.md'
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  checks: write
+
+jobs:
+  run-backend-linter:
+    name: Run clippy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: rustup show active-toolchain
+
+      - name: Build app
+        run: cargo build
+
+      - name: Run clippy
+        uses: wearerequired/lint-action@master
+        with:
+          clippy: true
