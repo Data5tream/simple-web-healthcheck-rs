@@ -1,0 +1,16 @@
+[package]
+name = "simple-web-healthcheck"
+version = "0.1.0"
+edition = "2024"
+authors = ["Simon Barth <data5tream@protonmail.com>"]
+license = "GPL-3.0-or-later"
+repository = "https://github.com/Data5tream/simple-web-healthcheck-rs"
+categories = ["command-line-utilities"]
+description = "A simple healthcheck for web containers"
+readme = "README.md"
+
+[lints.clippy]
+pedantic = "warn"
+
+[dependencies]
+reqwest = { version = "0.12.15", features = ["blocking"] }
