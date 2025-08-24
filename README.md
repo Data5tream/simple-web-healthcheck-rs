@@ -15,8 +15,7 @@ the range of `400-599`. Provide the healthcheck URL as the first argument to the
 
 Check out the [web-test-container](https://github.com/Data5tream/web-test-container) Dockerfile for a usage example.
 
-> The `simple-web-healthcheck` binary currently has a size of around 3.5 MB. I'll probably rewrite it in `hyper` or
-> another lower level HTTP client, to reduce the size further.
+> The `simple-web-healthcheck` binary currently has a size of around 1.6 MB.
 
 ### Dockerfile
 
