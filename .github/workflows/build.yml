@@ -1,4 +1,4 @@
-name: Lint
+name: Build
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   checks: write
 
 jobs:
-  run-clippy:
+  run-build:
     name: Run clippy
     runs-on: ubuntu-latest
 
@@ -20,5 +20,5 @@ jobs:
       - name: Install toolchain
         run: rustup show active-toolchain
 
-      - name: Lint
-        run: cargo clippy
+      - name: Build
+        run: cargo build
