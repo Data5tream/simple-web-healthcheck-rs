@@ -9,7 +9,7 @@ jobs:
   release-plz-release:
     name: Release-plz release
     runs-on: ubuntu-latest
-    if: ${{ github.repository_owner == 'machfile' }}
+    if: ${{ github.repository_owner == 'data5tream' }}
     permissions:
       contents: write
       id-token: write
