@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   run-build:
-    name: Run clippy
+    name: Run cargo build
     runs-on: ubuntu-latest
 
     steps:
