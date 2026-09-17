@@ -1,16 +1,17 @@
-name: Lint
+name: QA
 
 on:
   push:
-    paths-ignore:
-      - '**.md'
+    paths:
+      - 'src/**'
+      - 'Cargo.*'
 
 permissions:
   checks: write
 
 jobs:
-  run-clippy:
-    name: Run clippy
+  check-qa:
+    name: Run clippy & formatter
     runs-on: ubuntu-latest
 
     steps:

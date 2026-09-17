@@ -2,8 +2,9 @@ name: Build
 
 on:
   push:
-    paths-ignore:
-      - '**.md'
+    paths:
+      - 'src/**'
+      - 'Cargo.*'
 
 permissions:
   checks: write
