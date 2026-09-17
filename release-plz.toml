@@ -48,5 +48,5 @@ commit_parsers = [
   { message = "^docs", group = "<!-- 3 -->Documentation" },
   { message = "^perf", group = "<!-- 4 -->Performance" },
   { message = "^chore", group = "<!-- 5 -->Miscellaneous Tasks" },
-  { message = "^ci", group = "<!-- 6 -->Continous Delivery" },
+  { message = "^ci", group = "<!-- 6 -->Continuous Delivery" },
 ]
