@@ -15,10 +15,13 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install toolchain
         run: rustup show active-toolchain
 
-      - name: Lint
+      - name: Check linting
         run: cargo clippy
+
+      - name: Check formatting
+        run: cargo fmt --check
