@@ -1,9 +1,4 @@
-use std::{
-    error::Error,
-    fmt,
-    net::{SocketAddr},
-    str::FromStr,
-};
+use std::{error::Error, fmt, net::SocketAddr, str::FromStr};
 
 pub struct HealthcheckAddr {
     pub socket: SocketAddr,
@@ -282,7 +277,10 @@ mod tests {
 
     #[test]
     fn ipv4_with_port_and_schema_and_with_path_resolves() {
-        let args = vec![String::from("cmd"), String::from("http://127.0.0.1:3000/test")];
+        let args = vec![
+            String::from("cmd"),
+            String::from("http://127.0.0.1:3000/test"),
+        ];
         let result = get_connection_url(&args);
 
         assert!(result.is_ok());
@@ -335,5 +333,4 @@ mod tests {
         );
         assert_eq!(socket.path, String::from("/test"));
     }
-
 }

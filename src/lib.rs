@@ -1,4 +1,7 @@
-use std::{env, process::{ExitCode, exit}};
+use std::{
+    env,
+    process::{ExitCode, exit},
+};
 
 mod address;
 mod connection;

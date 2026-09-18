@@ -1,5 +1,7 @@
 use std::{
-    fmt, io::{self, Read, Write}, net::TcpStream,
+    fmt,
+    io::{self, Read, Write},
+    net::TcpStream,
 };
 
 use crate::{address::HealthcheckAddr, connection::TestError::HttpError};
@@ -18,7 +20,9 @@ impl fmt::Display for TestError {
         match self {
             TestError::ConnectionFailure(err) => write!(f, "TCP connection failed: {err}"),
             TestError::RequestSendingError => write!(f, "failed to send HTTP request"),
-            TestError::ResponseReadingError(err) => write!(f, "failed to read HTTP response: {err}"),
+            TestError::ResponseReadingError(err) => {
+                write!(f, "failed to read HTTP response: {err}")
+            }
             TestError::MalformedHttp => write!(f, "response is not valid HTTP"),
             TestError::HttpError(status) => write!(f, "response has HTTP status {status}"),
         }
@@ -73,7 +77,7 @@ pub fn connect(connection_details: &HealthcheckAddr) -> Result<(), TestError> {
     if let Err(err) = stream.read_to_string(&mut response) {
         return Err(TestError::ResponseReadingError(err));
     }
-    
+
     parse_response(&response)
 }
 
@@ -114,7 +118,7 @@ mod tests {
         let error = parsed.unwrap_err();
         match error {
             TestError::HttpError(status) => assert_eq!(status, 404),
-            other => panic!("wrong error code: {other}")
+            other => panic!("wrong error code: {other}"),
         }
     }
 
@@ -127,7 +131,7 @@ mod tests {
         let error = parsed.unwrap_err();
         match error {
             TestError::HttpError(status) => assert_eq!(status, 520),
-            other => panic!("wrong error code: {other}")
+            other => panic!("wrong error code: {other}"),
         }
     }
 
