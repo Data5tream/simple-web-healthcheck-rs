@@ -6,6 +6,10 @@ on:
       - 'src/**'
       - 'Cargo.*'
 
+  pull_request:
+    branches:
+      - master
+
 permissions:
   checks: write
 
@@ -26,3 +30,17 @@ jobs:
 
       - name: Check formatting
         run: cargo fmt --check
+
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v7
+
+      - name: Install toolchain
+        run: rustup show active-toolchain
+
+      - name: Run tests
+        run: cargo test
