@@ -1,4 +1,9 @@
-use std::{error::Error, fmt, net::SocketAddr, str::FromStr};
+use std::{
+    error::Error,
+    fmt,
+    net::{Ipv6Addr, SocketAddr},
+    str::FromStr,
+};
 
 pub struct HealthcheckAddr {
     pub socket: SocketAddr,
@@ -54,7 +59,19 @@ pub fn get_connection_url(args: &[String]) -> Result<HealthcheckAddr, UrlError> 
 
     let mut host_string = String::from(&without_schema[..addr_end]);
     // this breaks on IPv6
-    if !host_string.contains(':') {
+    if let Some(i) = host_string.rfind(':') {
+        if host_string.matches(':').count() > 1 && Ipv6Addr::from_str(&host_string).is_ok() {
+            // we got a full IPv6 without port, so add default port
+            host_string.push_str(":80");
+        } else {
+            // not a valid raw IPv6, if last segment isn't a port, add default port
+            let test_string = &host_string[i + 1..];
+            if test_string.parse::<usize>().is_err() {
+                host_string.push_str(":80");
+            }
+        }
+    } else {
+        // no port found, add default port
         host_string.push_str(":80");
     }
 
